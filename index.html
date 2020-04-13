@@ -22,8 +22,8 @@
   
 <a-entity id = "left-hand"  hand-controls="color: #ff00ff; handModelStyle: highPoly;  hand: left"  oculus-touch-controls="hand: left ;model: true" visible="true"></a-entity>
 <a-entity id = "right-hand" hand-controls="color: #ff00ff; handModelStyle: highPoly;  hand: right" oculus-touch-controls="hand: right;model: true" visible="true"></a-entity>
-<a-entity id = "laser-left"  laser-controls="" oculus-touch-controls="hand: left"  laser-controls line="color: red; opacity: 0.75"></a-entity>
-<a-entity id = "laser-right" laser-controls="" oculus-touch-controls="hand: right;model: false" laser-controls line="color: red; opacity: 0.75"></a-entity>
+<a-entity id = "laser-left"  laser-controls="hand: left;model:true"  oculus-touch-controls="hand: left;model:false"  line="color: red; opacity: 0.75"></a-entity>
+<a-entity id = "laser-right" laser-controls="hand: right;model:true" oculus-touch-controls="hand: right;model:false" line="color: red; opacity: 0.75"></a-entity>
 
 </a-scene>
 
