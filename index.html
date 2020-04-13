@@ -9,7 +9,7 @@
   <script src="index.js"></script>
 </head>
 
-<a-scene physics="debug: false; gravity: 0; restitution: 0.9; " background="color: #ECECEC" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" device-orientation-permission-ui="">
+<a-scene physics="debug: false; gravity: -9.8; restitution: 0.8; workerFps: 72;" background="color: #ECECEC" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" device-orientation-permission-ui="">
 
 <a-assets>
   <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
@@ -19,22 +19,30 @@
 <a-sky id="sky" radius="30" src="#skyTexture" theta-length="90"></a-sky>
 <a-cylinder id="floor" position="0 0 0" rotation="0 0 0" radius="32" height="0.1" src="#groundTexture"></a-cylinder>
 
-<a-box id="cube" class="collidable" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow="" material="" geometry=""></a-box>
-<a-sphere id="boule" class="collidable" position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow="" material="" geometry=""></a-sphere>
-<a-cylinder id = "cylindre" class="collidable" position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow="" material="" geometry=""></a-cylinder>
+<a-box id="cube" x-dynamic-body class="collidable" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow="" material="" geometry=""></a-box>
+<a-sphere id="boule" x-dynamic-body class="collidable" position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow="" material="" geometry=""></a-sphere>
+<a-cylinder id = "cylindre" x-dynamic-body class="collidable" position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow="" material="" geometry=""></a-cylinder>
 
   
-<a-entity id="head" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
-<a-entity id="ctlL"
-   teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
-   raycaster="objects: .collidable; far:1.2;" laser-controls="hand: left" input-listen>
-   <a-text value="Trigger: shoot a ball\nGrip: Grab large object\nX: Teleport" position="0 0.05 0"
-   rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
-</a-entity>
-<a-entity id="ctlR" raycaster="objects: .collidable; far:1.2;" laser-controls="hand: right" input-listen>
-   <a-text value="Trigger: shoot a ball\nGrip: Grab large object\nA: Remove small balls"
-   position="0 0.05 0" rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
-</a-entity>
+<a-entity id="cameraRig">
+            <a-entity id="head" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
+
+            <a-entity id="ctlR" raycaster="objects: .collidable; far:1.2;" laser-controls="hand: right" input-listen>
+                <a-text id="textR" value="Trigger: shoot a ball\nGrip: Grab large object\nA: Remove small balls"
+                    position="0 0.05 0" rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
+                <a-box id="pad" class="collidable" x-dynamic-body static-body position="0 -0.7 -0.3" width=".6" height=".4" depth=".6" rotation="-40 0 0" color="#D94C53" xshadow></a-box>
+            </a-entity>
+
+            <a-entity id="ctlL"
+                x-teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger;"
+                teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
+                raycaster="objects: .collidable; far:1.2;" laser-controls="hand: left" input-listen>
+                <a-text id="textL" value="Trigger: shoot a ball\nGrip: Grab large object\nX: Teleport" position="0 0.05 0"
+                    rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
+            </a-entity>
+        </a-entity>
+  
+  
   
 <!--  
 <a-entity id = "left-hand"  hand-controls="color: #ff00ff; handModelStyle: highPoly;  hand: left"  oculus-touch-controls="hand: left ;model: true" visible="true" teleport-controls></a-entity>
