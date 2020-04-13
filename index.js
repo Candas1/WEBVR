@@ -1,13 +1,13 @@
 var cache = function(object) { 
 
- alert(object); 
+ //alert(object); 
  document.querySelector('#'+ object).setAttribute("visible",false);
  
 }
 
 var montre = function(object) { 
 
- alert(object); 
+ //alert(object); 
  document.querySelector('#'+ object).setAttribute("visible",true);
  
 }
