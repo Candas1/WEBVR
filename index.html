@@ -25,24 +25,21 @@
 
   
 <a-entity id="cameraRig">
-            <a-entity id="head" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
+   <a-entity id="head" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
 
-            <a-entity id="ctlR" raycaster="objects: .collidable; far:1.2;" laser-controls="hand: right" input-listen>
-                <a-text id="textR" value="Trigger: shoot a ball\nGrip: Grab large object\nA: Remove small balls"
-                    position="0 0.05 0" rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
-                <a-box id="pad" class="collidable" x-dynamic-body static-body position="0 -0.7 -0.3" width=".6" height=".4" depth=".6" rotation="-40 0 0" color="#D94C53" xshadow></a-box>
-            </a-entity>
-
-            <a-entity id="ctlL"
-                x-teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger;"
-                teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
-                raycaster="objects: .collidable; far:1.2;" laser-controls="hand: left" input-listen>
-                <a-text id="textL" value="Trigger: shoot a ball\nGrip: Grab large object\nX: Teleport" position="0 0.05 0"
-                    rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
-            </a-entity>
-        </a-entity>
-  
-  
+   <a-entity id="ctlR" raycaster="objects: .collidable; far:1.2;" laser-controls="hand: right" input-listen>
+      <a-text id="textR" value="Trigger: shoot a ball\nGrip: Grab large object\nA: Remove small balls"
+         position="0 0.05 0" rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
+      <a-box id="pad" class="collidable" x-dynamic-body static-body position="0 -0.7 -0.3" width=".6" height=".4" depth=".6" rotation="-40 0 0" color="#D94C53" xshadow></a-box>
+   </a-entity>
+   <a-entity id="ctlL"
+      x-teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger;"
+      teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
+      raycaster="objects: .collidable; far:1.2;" laser-controls="hand: left" input-listen>
+      <a-text id="textL" value="Trigger: shoot a ball\nGrip: Grab large object\nX: Teleport" position="0 0.05 0"
+         rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
+   </a-entity>
+</a-entity>  
   
 <!--  
 <a-entity id = "left-hand"  hand-controls="color: #ff00ff; handModelStyle: highPoly;  hand: left"  oculus-touch-controls="hand: left ;model: true" visible="true" teleport-controls></a-entity>
