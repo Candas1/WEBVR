@@ -1,3 +1,15 @@
+AFRAME.registerComponent('draw-canvas', {
+    schema: {default: ''},
+
+    init: function () {
+      this.canvas = document.getElementById(this.data);
+      this.ctx = this.canvas.getContext('2d');
+
+      // Draw on canvas...
+    }
+  });
+
+
 AFRAME.registerComponent('input-listen', {
         init: function() {
             //Declaration and initialization of flag 
