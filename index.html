@@ -4,6 +4,7 @@
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
   <script src="https://unpkg.com/aframe-teleport-controls/dist/aframe-teleport-controls.min.js"
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
   <script src="index.js"></script>
 </head>
 
@@ -17,9 +18,9 @@
 <a-sky id="sky" radius="30" src="#skyTexture" theta-length="90"></a-sky>
 <a-cylinder id="floor" position="0 0 0" rotation="0 0 0" radius="32" height="0.1" src="#groundTexture"></a-cylinder>
 
-<a-box id="cube" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow="" material="" geometry=""></a-box>
-<a-sphere id="boule" position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow="" material="" geometry=""></a-sphere>
-<a-cylinder id = "cylindre" position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow="" material="" geometry=""></a-cylinder>
+<a-box id="cube" class="collidable" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow="" material="" geometry=""></a-box>
+<a-sphere id="boule" class="collidable" position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow="" material="" geometry=""></a-sphere>
+<a-cylinder id = "cylindre" class="collidable" position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow="" material="" geometry=""></a-cylinder>
 
   
 <a-entity id="head" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
