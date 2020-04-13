@@ -1,115 +1,136 @@
 AFRAME.registerComponent('input-listen', {
-        init:
-            function () {
-                //Declaration and initialization of flag 
-                //which exprains grip button is pressed or not.
-                //"this.el" reffers ctlR or L in this function
-                this.el.grip = false;
+        init: function() {
+            //Declaration and initialization of flag 
+            //which exprains grip button is pressed or not.
+            //"this.el" reffers ctlR or L in this function
+            this.el.grip = false
 
-                //Called when trigger is pressed 
-                this.el.addEventListener('triggerdown', function (e) {
-                    //"this" reffers ctlR or L in this function
-                    var point = this.object3D.getWorldPosition();
+            //Called when trigger is pressed 
+            this.el.addEventListener('triggerdown', function(e) {
+                //"this" reffers ctlR or L in this function
+                const point = this.object3D.getWorldPosition()
 
-                    //txt.setAttribute("value",point.x.toFixed(2)+","+point.y.toFixed(2)+","+point.z.toFixed(2));
+                //txt.setAttribute("value",point.x.toFixed(2)+","+point.y.toFixed(2)+","+point.z.toFixed(2));
 
-                    //Creating ball entity.
-                    var ball = document.createElement('a-sphere');
-                    ball.setAttribute('class', 'ball');
-                    ball.setAttribute('scale', '0.2 0.2 0.2');
-                    ball.setAttribute('position', point);
-                    ball.setAttribute('dynamic-body', 'shape: sphere; sphereRadius:0.2; ');
+                //Creating ball entity.
+                const ballsize = .1
+                const ball = document.createElement('a-sphere')
+                ball.setAttribute('class', 'ball')
+                //ball.setAttribute('class', 'collidable')
+                ball.setAttribute('radius', ballsize)
+                ball.setAttribute('position', point)
+                ball.setAttribute('dynamic-body', 'shape: sphere; sphereRadius: ' + ballsize + '; mass: .1;')
+                //ball.setAttribute('static-body', 'shape: sphere; sphereRadius: ' + ballsize + '; mass: .1;')
 
-                    //Getting raycaster which was attached to ctrlR or L
-                    var dir = this.getAttribute("raycaster").direction;
+                //Getting raycaster which was attached to ctrlR or L
+                const dir = this.getAttribute("raycaster").direction
 
-                    //Setting shoot dierction and speed 
-                    var force = new THREE.Vector3(dir.x, dir.y, dir.z);
-                    force.multiplyScalar(2000);                   
-                    ball.force = this.object3D.localToWorld(force);
+                //Setting shoot dierction and speed 
+                const force = new THREE.Vector3(dir.x, dir.y, dir.z)
+                force.normalize()
+                force.multiplyScalar(50)
+                ball.force = this.object3D.localToWorld(force)
 
-                    //Instantiate ball entity in a-scene
-                    var scene = document.querySelector('a-scene');
-                    scene.appendChild(ball);
+                //Instantiate ball entity in a-scene
+                const scene = document.querySelector('a-scene')
+                scene.appendChild(ball)
 
-                    //shoot "ball" after physics information getting ready. 
-                    ball.addEventListener('body-loaded', function (e) {
-                        //"this" reffers ball entity in this function
-                        var p = this.object3D.position;
-                        //this.velocity was calculated before this function is called.
-                        var f = this.force;
-                        this.body.applyForce(
-                            new CANNON.Vec3(f.x, f.y, f.z),
-                            new CANNON.Vec3(p.x, p.y, p.z)
-                        );
-                    });
-                });
+                //shoot "ball" after physics information getting ready. 
+                ball.addEventListener('body-loaded', function(e) {
+                    //this.velocity was calculated before this function is called.
+                    const f = this.force
+                    this.body.applyForce(new CANNON.Vec3(f.x, f.y, f.z), new CANNON.Vec3())
+                })
+                /*
+                ball.addEventListener('collide', function(e) {
+                    //this.parentNode.removeChild(this)
+                    this.removeAttribute('dynamic-body')
+                    this.setAttribute('static-body', 'shape: sphere; sphereRadius: ' + ballsize + '; mass: .1;')
+                    this.setAttribute('class', 'collidable')
+                })
+                */
+            })
+            
+            //Grip Pressed
+            this.el.addEventListener('gripdown', function(e) {
+                //Setting grip flag as true.
+                this.grip = true
+            })
+            //Grip Released
+            this.el.addEventListener('gripup', function(e) {
+                //Setting grip flag as false.
+                this.grip = false
+            })
 
-                //Grip Pressed
-                this.el.addEventListener('gripdown', function (e) {
-                    //Setting grip flag as true.
-                    this.grip = true;
-                });
-                //Grip Released
-                this.el.addEventListener('gripup', function (e) {
-                    //Setting grip flag as false.
-                    this.grip = false;
-                });
+            //Raycaster intersected with something.
+            this.el.addEventListener('raycaster-intersection', function(e) {
+                //Store first selected object as selectedObj 
+                this.selectedObj = e.detail.els[0]
+                /*
+                textR.setAttribute('value', this.selectedObj.id)
+                const ip = e.detail.intersection.point
+                const op = this.selectedObj.object3D.position
+                this.selectedPointD = new THREE.Vector3()
+                this.selectedPointD.subVectors(op, ip)
+                */
+            })
+            //Raycaster intersection is finished.
+            this.el.addEventListener('raycaster-intersection-cleared', function(e) {
+                //Clear information of selectedObj
+                this.selectedObj = null
+            })
 
-                //Raycaster intersected with something.
-                this.el.addEventListener('raycaster-intersection', function (e) {
-                    //Store first selected object as selectedObj 
-                    this.selectedObj = e.detail.els[0];
-                });
-                //Raycaster intersection is finished.
-                this.el.addEventListener('raycaster-intersection-cleared', function (e) {
-                    //Clear information of selectedObj
-                    this.selectedObj = null;
-                });
+            //A-buttorn Pressed 
+            this.el.addEventListener('abuttondown', function(e) {
+                //Aqurire all ball entities which are instantiated in a-scene
+                const els = document.querySelectorAll('.ball')
+                //Destroy all ball entities
+                for (let i = 0; i < els.length; i++) {
+                    els[i].parentNode.removeChild(els[i])
+                }
+            })
+            //B-buttorn Pressed 
+            this.el.addEventListener('bbuttondown', function(e) {
+                location.reload()
+            })
 
-                //A-buttorn Pressed 
-                this.el.addEventListener('abuttondown', function (e) {
-                    //Aqurire all ball entities which are instantiated in a-scene
-                    var els = document.querySelectorAll('.ball');
-                    //Destroy all ball entities
-                    for (var i = 0; i < els.length; i++) {
-                        els[i].parentNode.removeChild(els[i]);
-                    }
-                });
-
-                //X-buttorn Pressed 
-                this.el.addEventListener('xbuttondown', function (e) {
-                    //Start pointing position to teleport  
-                    this.emit('teleportstart');
-                });
-
-                //X-buttorn Released 
-                this.el.addEventListener('xbuttonup', function (e) {
-                    //Jump to pointed position
-                    this.emit('teleportend');
-                });
-
-                //console.log(this);
-            },
-
+            //X-buttorn Pressed 
+            this.el.addEventListener('xbuttondown', function(e) {
+                //Start pointing position to teleport  
+                this.emit('teleportstart')
+            })
+            //X-buttorn Released 
+            this.el.addEventListener('xbuttonup', function(e) {
+                //Jump to pointed position
+                this.emit('teleportend')
+            })
+            /*
+            pad.addEventListener('body-loaded', function(e) {
+                console.log(this.body)
+            })
+            */
+        },
         //called evry frame.
         tick: function () {
-
-            if (!this.el.selectedObj) { return; }
-            if (!this.el.grip) { return; }
+            if (!this.el.selectedObj || !this.el.grip) {
+                return
+            }
             //Getting raycaster component which is attatched to ctlR or L
             //this.el means entity of ctlR or L in this function.
-            var ray = this.el.getAttribute("raycaster").direction;
+            const ray = this.el.getAttribute("raycaster").direction
             //setting tip of raycaster as 1.2m forward of controller.  
-            var p = new THREE.Vector3(ray.x, ray.y, ray.z);
-            p.normalize();
-            p.multiplyScalar(1.2);
+            const p = new THREE.Vector3(ray.x, ray.y, ray.z)
+            p.normalize()
+            p.multiplyScalar(1.2)
             //Convert local position into world coordinate.
-            this.el.object3D.localToWorld(p);
+            this.el.object3D.localToWorld(p)
+//            p.add(this.el.selectedPointD)
+            //const ap = new THREE.Vector3(0, .5, 0) // 持つ場所をずらす
+            //p.add(ap)
             //Move selected object to follow the tip of raycaster.
-            this.el.selectedObj.object3D.position.set(p.x, p.y, p.z);
+            this.el.selectedObj.object3D.position.set(p.x, p.y, p.z)
         }
-    });
+    })
 
 var cache = function(object) { 
 
