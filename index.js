@@ -1,3 +1,14 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyAxnbQD_f6jdZ55AE-GCf5GlvuxYbwIkj8",
+    authDomain: "webvr-multi.firebaseapp.com",
+    databaseURL: "https://webvr-multi.firebaseio.com",
+    projectId: "webvr-multi",
+    storageBucket: "webvr-multi.appspot.com",
+    messagingSenderId: "673119099343",
+    appId: "1:673119099343:web:73fff425ab58b86748daba",
+    measurementId: "G-BMQTGZPVB3"
+
+
 AFRAME.registerComponent('draw-canvas', {
     schema: {default: ''},
 
