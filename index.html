@@ -49,8 +49,8 @@
 <a-entity static-body geometry="primitive: plane" class="collidable" dynamic-body position="4 2 0" rotation="0 -90 0" width="4" height="4" material="src: #my-canvas"
           draw-canvas="my-canvas"></a-entity>
   
-<a-entity id="cameraRig" networked="template:#avatar-template;attachTemplateToLocal:false;">
-   <a-entity id="head" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
+<a-entity id="cameraRig">
+   <a-entity id="head" networked="template:#avatar-template;attachTemplateToLocal:false;" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
 
    <a-entity id="ctlR" 
       raycaster="objects: .collidable; far:1.2;"
