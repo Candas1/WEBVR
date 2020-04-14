@@ -75,5 +75,34 @@
 <a-entity id = "laser-right" laser-controls="hand: right;model:true" oculus-touch-controls="hand: right;model:false" line="color: red; opacity: 0.75"></a-entity>
 -->
 </a-scene>
+  
+<script>
+    // Define custom schema for syncing avatar color, set by random-color
+    NAF.schemas.add({
+      template: '#avatar-template',
+      components: [
+        'position',
+        'rotation',
+        {
+          selector: '.head',
+          component: 'material',
+          property: 'color'
+        }
+      ]
+    });
+    // Called by Networked-Aframe when connected to server
+    function onConnect() {
+      NAF.log.write("onConnect", new Date());
+    }
+  </script>
+
+  <script>
+    // On mobile remove elements that are resource heavy
+    var isMobile = AFRAME.utils.device.isMobile();
+    if (isMobile) {
+      var particles = document.getElementById('particles');
+      particles.parentNode.removeChild(particles);
+    }
+  </script>
 
 </html>
