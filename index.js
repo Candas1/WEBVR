@@ -9,24 +9,6 @@ window.firebaseConfig = {
     appId: "1:673119099343:web:73fff425ab58b86748daba",
     measurementId: "G-BMQTGZPVB3"};
 
-// Define custom schema for syncing avatar color, set by random-color
-    NAF.schemas.add({
-      template: '#avatar-template',
-      components: [
-        'position',
-        'rotation',
-        {
-          selector: '.head',
-          component: 'material',
-          property: 'color'
-        }
-      ]
-    });
-    // Called by Networked-Aframe when connected to server
-    function onConnect() {
-      NAF.log.write("onConnect", new Date());
-    }
-
 AFRAME.registerComponent('draw-canvas', {
     schema: {default: ''},
 
