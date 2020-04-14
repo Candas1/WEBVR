@@ -15,7 +15,7 @@
   <script src="index.js"></script>
 </head>
 
-<a-scene networked-scene="adapter: firebase;"
+<a-scene networked-scene="room: firebase;adapter: firebase;"
          physics="debug: false; gravity: -9.8; restitution: 0.8; workerFps: 72;" 
          background="color: #ECECEC" 
          inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" device-orientation-permission-ui="">
@@ -24,6 +24,19 @@
   <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
   <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg">
   <canvas id="my-canvas" crossorigin="anonymous"></canvas>
+  <template id="avatar-template">
+        <a-entity class="avatar" networked-audio-source>
+          <a-sphere class="head" color="#5985ff" scale="0.45 0.5 0.4" random-color></a-sphere>
+          <a-entity class="face" position="0 0.05 0">
+            <a-sphere class="eye" color="#efefef" position="0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+              <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+            </a-sphere>
+            <a-sphere class="eye" color="#efefef" position="-0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+              <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+            </a-sphere>
+          </a-entity>
+        </a-entity>
+      </template>
 </a-assets>
 
 <a-sky id="sky" radius="30" src="#skyTexture" theta-length="90"></a-sky>
@@ -36,7 +49,7 @@
 <a-entity static-body geometry="primitive: plane" class="collidable" dynamic-body position="4 2 0" rotation="0 -90 0" width="4" height="4" material="src: #my-canvas"
           draw-canvas="my-canvas"></a-entity>
   
-<a-entity id="cameraRig">
+<a-entity id="cameraRig" networked="template:#avatar-template;attachTemplateToLocal:false;">
    <a-entity id="head" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
 
    <a-entity id="ctlR" 
