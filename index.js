@@ -7,7 +7,7 @@ window.firebaseConfig = {
     storageBucket: "webvr-multi.appspot.com",
     messagingSenderId: "673119099343",
     appId: "1:673119099343:web:73fff425ab58b86748daba",
-    measurementId: "G-BMQTGZPVB3"
+    measurementId: "G-BMQTGZPVB3"};
 
 // Define custom schema for syncing avatar color, set by random-color
     NAF.schemas.add({
