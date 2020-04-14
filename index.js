@@ -1,4 +1,4 @@
-var firebaseConfig = {
+window.firebaseConfig = {
     authType: 'none',
     apiKey: "AIzaSyAxnbQD_f6jdZ55AE-GCf5GlvuxYbwIkj8",
     authDomain: "webvr-multi.firebaseapp.com",
