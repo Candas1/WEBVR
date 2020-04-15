@@ -48,22 +48,22 @@
          <a-box scale="0.1 0.1 0.1"></a-box>
       </template>
       <template id="box-template">
-      <a-box      id="cube"     class="collidable" dynamic-body position="-1 1 -3" height="2" rotation="0 45 0" color="#4CC3D9" mass="5"></a-box>
+      <a-box></a-box>
       </template>
       <template id="sphere-template">
-      <a-sphere   id="boule"    class="collidable" dynamic-body position="0 1.25 -5" radius="1.25" color="#EF2D5E" mass="5"></a-sphere>
+      <a-sphere  class="collidable" dynamic-body position="0 1.25 -5" radius="1.25" color="#EF2D5E" mass="5"></a-sphere>
       </template>
       <template id="cylindre-template">
-      <a-cylinder id="cylindre" class="collidable" dynamic-body position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" mass="5"></a-cylinder>
+      <a-cylinder class="collidable" dynamic-body position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" mass="5"></a-cylinder>
       </template>
 </a-assets>
   
 <a-sky id="sky" radius="30" src="#skyTexture" theta-length="90"></a-sky>
 <a-cylinder static-body id="floor" position="0 0 0" rotation="0 0 0" radius="32" height="0.1" src="#groundTexture"></a-cylinder>
   
-<a-entity id="cube" networked="template:#box-template;attachTemplateToLocal:false;"
-<a-entity id="boule" networked="template:#sphere-template;attachTemplateToLocal:false;"
-<a-entity id="cylindre" networked="template:#cylindre-template;attachTemplateToLocal:false;"
+<a-entity id="cube" networked="template:#box-template;attachTemplateToLocal:false;"</a-entity>
+<a-entity id="boule" networked="template:#sphere-template;attachTemplateToLocal:false;"</a-entity>
+<a-entity id="cylindre" networked="template:#cylindre-template;attachTemplateToLocal:false;"</a-entity>
             
 <a-entity static-body geometry="primitive: plane" class="collidable" dynamic-body position="4 2 0" rotation="0 -90 0" width="4" height="4" material="src: #my-canvas"
           draw-canvas="my-canvas"></a-entity>
