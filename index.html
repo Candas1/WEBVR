@@ -94,6 +94,15 @@
         }
       ]
     });
+  
+    NAF.schemas.add({
+        template: '#hand-template',
+        components: [
+          'position',
+          'rotation'
+        ]
+      });
+  
     // Called by Networked-Aframe when connected to server
     function onConnect() {
       NAF.log.write("onConnect", new Date());
