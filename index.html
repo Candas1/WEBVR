@@ -40,7 +40,6 @@
       <template id="player-template">
           <a-entity></a-entity>
         </template>
-  
       <template id="ctlR-template">
          <a-box scale="0.1 0.1 0.1"></a-box>
       </template>
@@ -54,9 +53,9 @@
 <a-cylinder static-body id="floor" position="0 0 0" rotation="0 0 0" radius="32" height="0.1" src="#groundTexture"></a-cylinder>
   
   
-<a-box id="cube"class="collidable" dynamic-body position="1 0.75 -3" height="2" width="1" color="#FFC65D" mass="5" networked></a-box>
-<a-sphere id="boule" class="collidable" dynamic-body position="0 1.25 -5" radius="1.25" color="#EF2D5E" mass="5" networked></a-sphere>
-<a-cylinder id="cylindre" class="collidable" dynamic-body position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" mass="5" networked></a-cylinder>
+<a-box id="cube"class="collidable" dynamic-body position="1 0.75 -3" height="2" width="1" color="#FFC65D" mass="5"></a-box>
+<a-sphere id="boule" class="collidable" dynamic-body position="0 1.25 -5" radius="1.25" color="#EF2D5E" mass="5"></a-sphere>
+<a-cylinder id="cylindre" class="collidable" dynamic-body position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" mass="5"></a-cylinder>
             
 <a-entity static-body geometry="primitive: plane" class="collidable" dynamic-body position="4 2 0" rotation="0 -90 0" width="4" height="4" material="src: #my-canvas"
           draw-canvas="my-canvas"></a-entity>
@@ -121,29 +120,7 @@
           'rotation'
         ]
       });
-  
-  
-   NAF.schemas.add({
-        template: '#box-template',
-        components: [
-          'position',
-          'rotation'
-        ]
-      });
-  NAF.schemas.add({
-        template: '#sphere-template',
-        components: [
-          'position',
-          'rotation'
-        ]
-      });
-  NAF.schemas.add({
-        template: '#cylindre-template',
-        components: [
-          'position',
-          'rotation'
-        ]
-      });
+ 
   
     // Called by Networked-Aframe when connected to server
     function onConnect() {
