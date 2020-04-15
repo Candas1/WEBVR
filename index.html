@@ -61,11 +61,11 @@
 <a-entity id="cameraRig">
    <a-entity id="head" networked="template:#avatar-template;attachTemplateToLocal:false;" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
 
-   <a-entity id="ctlR" networked="template:#ctlR-template;attachTemplateToLocal:false;"
+   <a-entity id="ctlR" 
       raycaster="objects: .collidable; far:1.2;"
       hand-controls="color: #c0c0c0; handModelStyle: highPoly;  hand: right" input-listen>
    </a-entity>
-   <a-entity id="ctlL" networked="template:#ctlL-template;attachTemplateToLocal:false;"
+   <a-entity id="ctlL" 
       x-teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger;"
       teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
       raycaster="objects: .collidable; far:1.2;"
