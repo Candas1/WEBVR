@@ -38,10 +38,26 @@
         </a-entity>
       </template>
 </a-assets>
-
-<a-sky id="sky" radius="30" src="#skyTexture" theta-length="90"></a-sky>
-<a-cylinder static-body id="floor" position="0 0 0" rotation="0 0 0" radius="32" height="0.1" src="#groundTexture"></a-cylinder>
-
+  
+<template id="ctlR-template">
+  <a-entity id="ctlR" 
+      raycaster="objects: .collidable; far:1.2;"
+      hand-controls="color: #c0c0c0; handModelStyle: highPoly;  hand: right" input-listen>
+      <a-text id="textR" value="Trigger: shoot a ball\nGrip: Grab large object\nA: Remove small balls"
+         position="0 0.05 0" rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
+   </a-entity>
+</template>
+<template id="ctlL-template">
+  <a-entity id="ctlL"
+      x-teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger;"
+      teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
+      raycaster="objects: .collidable; far:1.2;"
+      hand-controls="color: #c0c0c0; handModelStyle: highPoly;  hand: left" input-listen>
+      <a-text id="textL" value="Trigger: shoot a ball\nGrip: Grab large object\nX: Teleport" position="0 0.05 0"
+         rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
+   </a-entity>
+</template>
+  
 <a-box      id="cube"     class="collidable" dynamic-body position="-1 1 -3" height="2" rotation="0 45 0" color="#4CC3D9" mass="5"></a-box>
 <a-sphere   id="boule"    class="collidable" dynamic-body position="0 1.25 -5" radius="1.25" color="#EF2D5E" mass="5"></a-sphere>
 <a-cylinder id="cylindre" class="collidable" dynamic-body position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" mass="5"></a-cylinder>
@@ -52,13 +68,13 @@
 <a-entity id="cameraRig">
    <a-entity id="head" networked="template:#avatar-template;attachTemplateToLocal:false;" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
 
-   <a-entity id="ctlR" 
+   <a-entity id="ctlR" networked="attachTemplateToLocal:false;"
       raycaster="objects: .collidable; far:1.2;"
       hand-controls="color: #c0c0c0; handModelStyle: highPoly;  hand: right" input-listen>
       <a-text id="textR" value="Trigger: shoot a ball\nGrip: Grab large object\nA: Remove small balls"
          position="0 0.05 0" rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
    </a-entity>
-   <a-entity id="ctlL"
+   <a-entity id="ctlL" networked="attachTemplateToLocal:false;"
       x-teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger;"
       teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
       raycaster="objects: .collidable; far:1.2;"
