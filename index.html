@@ -38,13 +38,11 @@
         </a-entity>
       </template>
       <template id="ctlR-template">
-         <a-entity id="ctlR">
-            <a-box scale="0.1 0.1 0.1"></a-box>
+         <a-entity id="ctlR" hand-controls="color: #c0c0c0; handModelStyle: highPoly;  hand: left" input-listen>
          </a-entity>
       </template>
       <template id="ctlL-template">
-         <a-entity id="ctlL">
-            <a-box scale="0.1 0.1 0.1"></a-box>
+         <a-entity id="ctlL" hand-controls="color: #c0c0c0; handModelStyle: highPoly;  hand: left" input-listen>
          </a-entity>
       </template>
 </a-assets>
@@ -62,11 +60,11 @@
 <a-entity id="cameraRig">
    <a-entity id="head" networked="template:#avatar-template;attachTemplateToLocal:false;" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
 
-   <a-entity id="ctlR" networked="template:#ctlR-template"
+   <a-entity id="ctlR" networked="template:#ctlR-template;attachTemplateToLocal:false;"
       raycaster="objects: .collidable; far:1.2;"
       hand-controls="color: #c0c0c0; handModelStyle: highPoly;  hand: right" input-listen>
    </a-entity>
-   <a-entity id="ctlL" networked="template:#ctlL-template"
+   <a-entity id="ctlL" networked="template:#ctlL-template;attachTemplateToLocal:false;"
       x-teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger;"
       teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
       raycaster="objects: .collidable; far:1.2;"
