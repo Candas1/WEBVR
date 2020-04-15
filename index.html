@@ -49,7 +49,8 @@
       </template>
 </a-assets>
   
-
+<a-sky id="sky" radius="30" src="#skyTexture" theta-length="90"></a-sky>
+<a-cylinder static-body id="floor" position="0 0 0" rotation="0 0 0" radius="32" height="0.1" src="#groundTexture"></a-cylinder>
   
 <a-box      id="cube"     class="collidable" dynamic-body position="-1 1 -3" height="2" rotation="0 45 0" color="#4CC3D9" mass="5"></a-box>
 <a-sphere   id="boule"    class="collidable" dynamic-body position="0 1.25 -5" radius="1.25" color="#EF2D5E" mass="5"></a-sphere>
@@ -61,11 +62,11 @@
 <a-entity id="cameraRig">
    <a-entity id="head" networked="template:#avatar-template;attachTemplateToLocal:false;" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
 
-   <a-entity id="ctlR" 
+   <a-entity id="ctlR" networked="template:#ctlR-template;attachTemplateToLocal:false;"
       raycaster="objects: .collidable; far:1.2;"
       hand-controls="color: #c0c0c0; handModelStyle: highPoly;  hand: right" input-listen>
    </a-entity>
-   <a-entity id="ctlL" 
+   <a-entity id="ctlL" networked="template:#ctlL-template;attachTemplateToLocal:false;"
       x-teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger;"
       teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
       raycaster="objects: .collidable; far:1.2;"
