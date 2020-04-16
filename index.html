@@ -55,8 +55,8 @@
 <a-sky id="sky" radius="30" src="#skyTexture" theta-length="90"></a-sky>
 <a-cylinder static-body id="floor" position="0 0 0" rotation="0 0 0" radius="32" height="0.1" src="#groundTexture"></a-cylinder>
   
-<a-entity id="boule" networked="template:#sphere-template;attachTemplateToLocal:false;"
-          class="collidable" dynamic-body position="0 1.25 -5" radius="1.25" color="#EF2D5E" mass="5"></a-sphere>
+<a-entity id="boule" networked="template:#sphere-template;attachTemplateToLocal:true;"
+          class="collidable" dynamic-body></a-sphere>
   
 <a-box id="cube"class="collidable" dynamic-body position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" mass="5"></a-box>
 <a-cylinder id="cylindre" class="collidable" dynamic-body position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" mass="5"></a-cylinder>
